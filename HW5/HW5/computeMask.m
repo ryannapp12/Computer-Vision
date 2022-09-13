@@ -1,0 +1,11 @@
+function mask = computeMask(img_cell)
+    
+    % Starting with an empty mask
+    mask = zeros(size(img_cell{1}));
+    for i = 1:size(img_cell, 1)
+        tmp_img = img_cell{i};
+        % Keeping one for any non-zero pixel in any of the images
+        mask = mask | tmp_img ~= 0;
+    end
+    
+end

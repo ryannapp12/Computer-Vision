@@ -1,0 +1,24 @@
+function [normals, albedo_img] = ...
+    computeNormals(light_dirs, img_cell, mask)
+    
+    normals = zeros(size(mask, 1), size(mask, 2), 3);
+    albedo_img = zeros(size(mask));
+    I = zeros(size(img_cell));
+    
+    p_inv_ld = (inv(light_dirs'*light_dirs))*light_dirs';
+    for i = 1:size(mask, 1)
+        for j = 1:size(mask, 2)
+            if (mask(i, j) == 0)
+                normals(i, j, :) = [0, 0, -1];
+                albedo_img
+            else
+                for k = 1:size(img_cell, 1)
+                    I(k) = img_cell{k}(i, j);
+                end
+                normals(i, j, :) = p_inv_ld*I;
+            end
+        end
+    end
+
+end
+ 
