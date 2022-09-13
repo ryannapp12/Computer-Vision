@@ -1,0 +1,4 @@
+function labeled_img = generateLabeledImage(gray_img, threshold)
+img = imread(gray_img);
+im2bw(img, threshold)
+end
